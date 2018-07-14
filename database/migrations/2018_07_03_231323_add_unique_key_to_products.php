@@ -13,7 +13,7 @@ class AddUniqueKeyToProducts extends Migration
      */
     public function up()
     {
-        Schema::table('Products', function (Blueprint $table) {
+        Schema::table('products', function (Blueprint $table) {
             //
             $table->unique(['id', 'tipo', 'tipo_id'], 'unique_key');
 
@@ -27,7 +27,7 @@ class AddUniqueKeyToProducts extends Migration
      */
     public function down()
     {
-        Schema::table('Products', function (Blueprint $table) {
+        Schema::table('products', function (Blueprint $table) {
             //
             $table->dropPrimary('unique_key');
 
