@@ -19,8 +19,6 @@ class CreateProductsTable extends Migration
             $table->string('descripcion');
             $table->decimal('precio_venta', 8, 2);
             $table->decimal('precio_compra', 8, 2);
-            $table->enum('tipo', ['luna', 'lente','montura']);
-            $table->integer('tipo_id');
             $table->timestamps();
         });
     }

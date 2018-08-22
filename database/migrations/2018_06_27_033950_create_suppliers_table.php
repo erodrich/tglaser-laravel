@@ -18,6 +18,8 @@ class CreateSuppliersTable extends Migration
             $table->string('ruc');
             $table->string('nombre');
             $table->string('descripcion');
+            $table->string('telefono');
+            $table->string('email');
             $table->timestamps();
         });
     }

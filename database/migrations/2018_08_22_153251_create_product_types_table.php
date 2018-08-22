@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class AddUniqueKeyToProducts extends Migration
+class CreateProductTypesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,10 @@ class AddUniqueKeyToProducts extends Migration
      */
     public function up()
     {
-        Schema::table('products', function (Blueprint $table) {
-            //
-            $table->unique(['id', 'tipo', 'tipo_id'], 'unique_key');
-
+        Schema::create('product_types', function (Blueprint $table) {
+            $table->increments('id');
+            $table->string('nombre');
+            $table->timestamps();
         });
     }
 
@@ -27,10 +27,6 @@ class AddUniqueKeyToProducts extends Migration
      */
     public function down()
     {
-        Schema::table('products', function (Blueprint $table) {
-            //
-            $table->dropPrimary('unique_key');
-
-        });
+        Schema::dropIfExists('product_types');
     }
 }

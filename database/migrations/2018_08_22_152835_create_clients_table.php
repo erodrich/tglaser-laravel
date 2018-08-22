@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateGlassesTable extends Migration
+class CreateClientsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,12 @@ class CreateGlassesTable extends Migration
      */
     public function up()
     {
-        Schema::create('glasses', function (Blueprint $table) {
+        Schema::create('clients', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('glass_op_1');
-            $table->string('glass_op_2');
+            $table->string('nombre');
+            $table->string('numero_documento')->unique();
+            $table->string('telefono');
+            $table->string('email');
             $table->timestamps();
         });
     }
@@ -28,6 +30,6 @@ class CreateGlassesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('glasses');
+        Schema::dropIfExists('clients');
     }
 }
