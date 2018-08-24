@@ -19,7 +19,8 @@
                 <tr>
                     <th>Nombre</th>
                     <th>Ruc</th>
-                    <th>Fecha Alta</th>
+                    <th>Teléfono</th>
+                    <th>Correo</th>
                     <th></th>
                     <th></th>
                 </tr>
@@ -28,7 +29,8 @@
                     <tr>
                         <td><a href="/suppliers/{{$proveedor->id}}">{{$proveedor->nombre}}</a></td>
                         <td>{{$proveedor->ruc}}</td>
-                        <td>{{$proveedor->created_at}}</td>
+                        <td>{{$proveedor->telefono}}</td>
+                        <td>{{$proveedor->email}}</td>
                         <td>
                             <a href="/suppliers/{{$proveedor->id}}/edit" class="btn btn-primary">
                                 <span data-feather="edit"></span>        

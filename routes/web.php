@@ -19,6 +19,11 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/', 'HomeController@index')->name('home');
+//Route::get('/recepcion/', 'RecepcionController@index');
+Route::get('/recepcion/{monturas?}', 'RecepcionController@create');
+Route::post('/recepcion', 'RecepcionController@store');
+
+
 /*
 Route::get('/almacen', function () {
     return view('almacen.index');

@@ -19,6 +19,9 @@
                 </div>
                 <div class="card-body">
                     <p><strong>RUC: </strong>{{$proveedor->ruc}}</p>
+                    <p><strong>Teléfono: </strong>{{$proveedor->telefono}}</p>
+                    <p><strong>Correo: </strong>{{$proveedor->email}}</p>
+                    <h4>Descripción</h4>
                     <p class="card-text">{{$proveedor->descripcion}}</p>
                     <a href="/suppliers" class="btn btn-primary">Volver</a>
                 </div>

@@ -13,13 +13,13 @@
                 </div>
             @endif
             <a href="/almacenes/create" class="btn btn-primary">Añadir Almacén</a>
+            <a href="/recepcion" class="btn btn-primary">Recepción de Productos</a>
             <a href="/" class="btn btn-primary float-right">Volver</a>
 
             <table class="table table-striped mt-3">
                 <tr>
                     <th>Nombre</th>
                     <th>Descripción</th>
-                    <th>Fecha Alta</th>
                     <th></th>
                     <th></th>
                 </tr>
@@ -28,7 +28,6 @@
                     <tr>
                         <td><a href="/almacenes/{{$almacen->id}}">{{$almacen->nombre}}</a></td>
                         <td>{{$almacen->descripcion}}</td>
-                        <td>{{$almacen->created_at}}</td>
                         <td>
                             <a href="/almacenes/{{$almacen->id}}/edit" class="btn btn-primary">
                                 <span data-feather="edit"></span>        
