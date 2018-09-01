@@ -9,19 +9,19 @@
         </li>
         @if (Request::url() != "/")
         <li class="nav-item">
-            <a class="nav-link" href="#">
+            <a class="nav-link" href="/suppliers">
                 <span data-feather="shopping-cart"></span>
-                Ventas
+                Proveedores
             </a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" href="#">
+            <a class="nav-link" href="/warehouses">
                 <span data-feather="truck"></span>
                 Almacén
             </a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" href="#">
+            <a class="nav-link" href="/clientes">
                 <span data-feather="users"></span>
                 Clientes
             </a>

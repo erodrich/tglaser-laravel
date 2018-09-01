@@ -35,7 +35,7 @@
             <p class="card-text">En esta opción podrá: Registrar la recepción de productos, consultar stock y mover productos
               de un almacén a otro.
             </p>
-            <a href="/almacenes" class="btn btn-primary">Ir a Almacén</a>
+            <a href="{{ route('warehouses.index') }}" class="btn btn-primary">Ir a Almacén</a>
         </div>
       </div>
     </div>

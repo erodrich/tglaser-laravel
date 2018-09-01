@@ -31,4 +31,5 @@ Route::get('/almacen', function () {
 */
 Route::resource('suppliers', 'SuppliersController');
 Route::resource('products', 'ProductsController');
-Route::resource('almacenes', 'WarehousesController');
+Route::resource('warehouses', 'WarehousesController');
+Route::resource('clients', 'ClientsController');

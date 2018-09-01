@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-class WarehousesController extends Controller
+class ClientsController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,8 +14,6 @@ class WarehousesController extends Controller
     public function index()
     {
         //
-        $almacenes = \App\Warehouse::all();
-        return view('warehouses.index')->with('almacenes', $almacenes);
     }
 
     /**
@@ -26,7 +24,6 @@ class WarehousesController extends Controller
     public function create()
     {
         //
-        return view('warehouses.create');
     }
 
     /**
@@ -38,17 +35,6 @@ class WarehousesController extends Controller
     public function store(Request $request)
     {
         //
-        $almacen = new \App\Warehouse;
-        $almacen->nombre = $request->input('nombre');
-        $almacen->descripcion = $request->input('descripcion');
-        try{
-            $almacen->save();
-        } catch (Exception $e){
-            echo 'Excepción capturada: ', $e->getMessage(), "\n";
-        }
-        return redirect('warehouses')->with('success', 'Almacén añadido');
-        
-
     }
 
     /**
@@ -60,8 +46,6 @@ class WarehousesController extends Controller
     public function show($id)
     {
         //
-        $almacen = \App\Warehouse::findOrFail($id);
-        return view('warehouses.show')->with('almacen', $almacen);
     }
 
     /**
@@ -73,8 +57,6 @@ class WarehousesController extends Controller
     public function edit($id)
     {
         //
-        $almacen = \App\Warehouse::findOrFail($id);
-        return view('warehouses.edit')->with('almacen', $almacen);
     }
 
     /**
@@ -87,15 +69,6 @@ class WarehousesController extends Controller
     public function update(Request $request, $id)
     {
         //
-        $almacen = \App\Warehouse::findOrFail($id);
-        $almacen->nombre = $request->input('nombre');
-        $almacen->descripcion = $request->input('descripcion');
-        try{
-            $almacen->save();
-        } catch (Exception $e){
-            echo 'Excepción capturada: ', $e->getMessage(), "\n";
-        }
-        return redirect('warehouses')->with('success', 'Almacén modificado');
     }
 
     /**
@@ -107,9 +80,5 @@ class WarehousesController extends Controller
     public function destroy($id)
     {
         //
-        $almacen = \App\Warehouse::findOrFail($id);
-        $almacen->delete();
-
-        return redirect('warehouses')->with('success', 'Almacén eliminado');
     }
 }
