@@ -47,32 +47,13 @@ class ProductsController extends Controller
          *  5. Relacion producto tipo
          */
         $proveedor = \App\Supplier::findOrFail($request->input('proveedor_id'));
-        $tipo = null;
         $producto = new \App\Product;
         $producto->codigo = $request->input('codigo');
         $producto->descripcion = $request->input('descripcion');
         $producto->precio_venta = $request->input('precio_venta');
         $producto->precio_compra = $request->input('precio_compra');
-        $producto->tipo = $request->input('tipo');
-        switch ($producto->tipo) {
-            case 'lente':
-                $tipo = new \App\Contact;
-                $tipo->contact_op_1 = $request->input('contact_op_1');
-                $tipo->contact_op_2 = $request->input('contact_op_2');
-                break;
-            case 'luna':
-                $tipo = new \App\Glass;
-                $tipo->glass_op_1 = $request->input('glass_op_1');
-                $tipo->glass_op_2 = $request->input('glass_op_2');
-                break;
-        }
+        $producto->type_id = $request->input('tipo_id');
         try {
-            if (!is_null($tipo)) {
-                $tipo->save();
-                $producto->tipo_id = $tipo->id;
-            } else {
-                $producto->tipo_id = 0;
-            }
 
             $proveedor->products()->save($producto);
             $producto->save();
@@ -80,12 +61,7 @@ class ProductsController extends Controller
             echo 'Excepción capturada: ', $e->getMessage(), "\n";
         }
         $producto->fresh();
-        $tipo = $producto->tipo_id;
-        $data = [
-            'producto' => $producto,
-            'tipo' => $tipo,
-        ];
-        return redirect('/products')->with('success', 'Producto creado');
+        return redirect('recepcion')->with('status', 'Producto creado');
 
     }
 

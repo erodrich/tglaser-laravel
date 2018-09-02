@@ -19,9 +19,10 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/', 'HomeController@index')->name('home');
-//Route::get('/recepcion/', 'RecepcionController@index');
-Route::get('/recepcion/{monturas?}', 'RecepcionController@create');
-Route::post('/recepcion', 'RecepcionController@store');
+Route::get('/recepcion', 'RecepcionController@index')->name('recepcion');
+Route::get('/recepcion/monturas', 'RecepcionController@monturas')->name('recepcion.monturas');
+Route::get('/recepcion/pedidos', 'RecepcionController@pedidos')->name('recepcion.pedidos');
+Route::post('/pedidos/recibido/{id}', 'PedidosController@recibido');
 
 
 /*

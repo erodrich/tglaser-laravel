@@ -35,4 +35,14 @@ class RecepcionController extends Controller
         //return $request->input('product_type');
         return 'hola'.$request->input('warehouse_id');
     }
+
+    public function monturas(){
+        $proveedores = \App\Supplier::all()->pluck('nombre', 'id');
+        return view('recepcion.monturas')->with('proveedores', $proveedores);
+    }
+    public function pedidos(){
+        $pedidos = \App\Pedido::all();
+        
+        return view('recepcion.pedidos')->with('pedidos', $pedidos);
+    }
 }

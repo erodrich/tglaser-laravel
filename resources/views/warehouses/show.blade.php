@@ -19,7 +19,7 @@
                 </div>
                 <div class="card-body">
                     <p class="card-text">{{$almacen->descripcion}}</p>
-                    <a href="/almacenes" class="btn btn-primary float-right">Volver</a>
+                    <a href="{{ route('warehouses.index') }}" class="btn btn-primary float-right">Volver</a>
                 </div>
                 
             </div>

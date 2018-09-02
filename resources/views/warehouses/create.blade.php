@@ -24,7 +24,7 @@
                 {{Form::textarea('descripcion','',['class'=>'form-control','placeholder'=>'Información adicional', 'rows'=>'3'])}}
                 </div>
                 {{Form::submit('Guardar',['class'=>'btn btn-primary'])}}
-                <a href="/almacenes" class="btn btn-primary">Volver</a>
+                <a href="{{ route('warehouses.index') }}" class="btn btn-primary">Volver</a>
             {!! Form::close() !!}
         </div>
     </div>

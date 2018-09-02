@@ -12,7 +12,7 @@
                     {{ session('status') }}
                 </div>
             @endif
-            <a href="/almacenes/create" class="btn btn-primary">Añadir Almacén</a>
+            <a href="{{ route('warehouses.create') }}" class="btn btn-primary">Añadir Almacén</a>
             <a href="/recepcion" class="btn btn-primary">Recepción de Productos</a>
             <a href="/" class="btn btn-primary float-right">Volver</a>
 
@@ -26,10 +26,10 @@
                 @if(count($almacenes) > 0)
                     @foreach($almacenes as $almacen)
                     <tr>
-                        <td><a href="/almacenes/{{$almacen->id}}">{{$almacen->nombre}}</a></td>
+                        <td><a href="{{ route('warehouses.show', ['id'=>$almacen->id ]) }}">{{$almacen->nombre}}</a></td>
                         <td>{{$almacen->descripcion}}</td>
                         <td>
-                            <a href="/almacenes/{{$almacen->id}}/edit" class="btn btn-primary">
+                            <a href="{{ route('warehouses.edit', ['id'=>$almacen->id ]) }}" class="btn btn-primary">
                                 <span data-feather="edit"></span>        
                             </a>
                         </td>

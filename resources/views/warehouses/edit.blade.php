@@ -25,7 +25,7 @@
                     </div>
                 {{Form::hidden('_method', 'PUT')}}
                 {{Form::submit('Guardar',['class'=>'btn btn-primary'])}}
-                <a href="/almacenes" class="btn btn-primary">Volver</a>
+                <a href="{{ route('warehouses.index') }}" class="btn btn-primary">Volver</a>
             {!! Form::close() !!}
         </div>
     </div>
