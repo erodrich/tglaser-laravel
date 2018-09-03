@@ -24,25 +24,71 @@ class RecepcionController extends Controller
         $data = [
             'almacenes' => $almacenes,
             'product_types' => $product_types,
-            'product_value' => $product_value
+            'product_value' => $product_value,
+            'next_codigo' => $next_codigo,
         ];
 
         return view('recepcion.create')->with($data);
     }
 
     public function store(Request $request){
+        $tipo = \App\ProductType::find($request->tipo_id);
+        $producto = \App\Product::firstOrNew(['codigo' => $request->codigo]);
 
-        //return $request->input('product_type');
-        return 'hola'.$request->input('warehouse_id');
+        //En caso se trate de una montura se debe crear el producto y luego el movimiento
+        if(strtolower($tipo->nombre) == strtolower('montura') && $producto == null){
+            //Creando producto
+            $proveedor = \App\Supplier::findOrFail($request->input('proveedor_id'));
+            $producto = new \App\Product;
+            $producto->codigo = $request->input('codigo');
+            $producto->descripcion = $request->input('descripcion');
+            $producto->precio_venta = $request->input('precio_venta');
+            $producto->precio_compra = $request->input('precio_compra');
+            $producto->type_id = $request->input('tipo_id');
+            try {
+                $proveedor->products()->save($producto);
+                $producto->save();
+            } catch (Exception $e) {
+                echo 'Excepción capturada: ', $e->getMessage(), "\n";
+            }
+            $producto->fresh();
+        }
+        //Creando movimiento
+        $mov = new \App\Movement;
+        $mov->entrada = true;
+        $mov->cantidad = $request->cantidad;
+        $mov->product_id = $producto->id;
+        $mov->warehouse_id = $request->almacen_id;
+        $mov->save();
+        //Creando o actualizando inventario
+        $search_keys = [
+            'product_id' => $producto->id,
+            'warehouse_id' => $request->almacen_id,
+        ];
+        $inv = \App\Stock::firstOrNew($search_keys);
+        $inv->cantidad += $request->cantidad;
+        $inv->save();
+        echo($inv);
+         
     }
 
     public function monturas(){
         $proveedores = \App\Supplier::all()->pluck('nombre', 'id');
-        return view('recepcion.monturas')->with('proveedores', $proveedores);
+        $almacenes = \App\Warehouse::all()->pluck('nombre', 'id');
+        $data = [
+            'proveedores' => $proveedores,
+            'almacenes' => $almacenes
+        ];
+        return view('recepcion.monturas')->with($data);
     }
     public function pedidos(){
         $pedidos = \App\Pedido::all();
-        
-        return view('recepcion.pedidos')->with('pedidos', $pedidos);
+        $almacenes = \App\Warehouses::all()->pluck('nombre', 'id');
+        $data = [
+            'pedidos' => $pedidos,
+            'almacenes' => $almacenes
+        ];
+        return view('recepcion.pedidos')->with($data);
     }
+    
 }

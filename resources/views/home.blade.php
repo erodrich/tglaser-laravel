@@ -31,31 +31,11 @@
     <div class="col-sm-6">
       <div class="card">
         <div class="card-body">
-            <h3 class="card-title">Almacén</h3>
+            <h3 class="card-title">Recepcion</h3>
             <p class="card-text">En esta opción podrá: Registrar la recepción de productos, consultar stock y mover productos
               de un almacén a otro.
             </p>
-            <a href="{{ route('warehouses.index') }}" class="btn btn-primary">Ir a Almacén</a>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div class="row mt-3">
-    <div class="col-sm-6">
-      <div class="card">
-        <div class="card-body">
-          <h3 class="card-title">Productos</h3>
-          <p class="card-text">En este apartado podrá: añadir productos, ajustar precios, descripciones, etc.</p>
-          <a href="/products" class="btn btn-primary">Ir a Productos</a>
-        </div>
-      </div>
-    </div>
-    <div class="col-sm-6">
-      <div class="card">
-        <div class="card-body">
-          <h3 class="card-title">Proveedores</h3>
-          <p class="card-text">En este apartado podrá: añadir proveedores, editar datos asociados, descripciones, etc.</p>
-          <a href="/suppliers" class="btn btn-primary">Ir a Proveedores</a>
+            <a href="{{ route('recepcion') }}" class="btn btn-primary">Ir a Recepción de Productos</a>
         </div>
       </div>
     </div>

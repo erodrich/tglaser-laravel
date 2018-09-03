@@ -37,35 +37,12 @@
                 </div>
                 <div class="form-group">
                     {{Form::label('tipo','Seleccione tipo de producto: ')}}
-                    {{Form::select('tipo',['montura'=>'montura','luna'=>'luna','lente'=>'lente']),['class'=>'form-control','id'=>'tipo','name'=>'tipo']}}
+                    {{Form::select('tipo_id',$tipos),['class'=>'form-control']}}
                 </div>
-                <!-- Seccion formulario para luna -->
-                <div class="d-none border p-3" id="lunaSection">
-                    <h3>Detalle de Luna</h3>
-                    <div class="form-group">
-                        {{Form::label('glass_op_1','Opción 1: ')}}
-                        {{Form::text('glass_op_1','',['class'=>'form-control','placeholder'=>'', 'id'=>'glass_op_1'])}}
-                    </div>
-                    <div class="form-group">
-                        {{Form::label('glass_op_2','Opción 2: ')}}
-                        {{Form::text('glass_op_2','',['class'=>'form-control','placeholder'=>'', 'id'=>'glass_op_2'])}}
-                    </div>  
-                </div>
-                <!-- Seccion formulario para lentes -->
-                <div class="d-none border p-3" id="lenteSection">
-                    <h3>Detalle de Lente de Contacto</h3>
-                    <div class="form-group">
-                        {{Form::label('contact_op_1','Opción 1: ')}}
-                        {{Form::text('contact_op_1','',['class'=>'form-control','placeholder'=>'', 'id'=>'contact_op_1'])}}
-                    </div>
-                    <div class="form-group">
-                        {{Form::label('contact_op_2','Opción 2: ')}}
-                        {{Form::text('contact_op_2','',['class'=>'form-control','placeholder'=>'', 'id'=>'contact_op_2'])}}
-                    </div>
-                </div>
+               
 
                 {{Form::submit('Guardar',['class'=>'btn btn-primary'])}}
-                <a href="/products" class="btn btn-primary">Volver</a>
+            <a href="{{route('products.index')}}" class="btn btn-primary">Volver</a>
             {!! Form::close() !!}
         </div>
     </div>

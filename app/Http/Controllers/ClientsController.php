@@ -14,6 +14,8 @@ class ClientsController extends Controller
     public function index()
     {
         //
+        $clientes = \App\Client::all();
+        return view('clients.index')->with('clientes', $clientes);
     }
 
     /**
@@ -24,6 +26,7 @@ class ClientsController extends Controller
     public function create()
     {
         //
+        return view('clients.create');
     }
 
     /**
@@ -35,6 +38,19 @@ class ClientsController extends Controller
     public function store(Request $request)
     {
         //
+        try{
+            $cliente = new \App\Client;
+            $cliente->nombre = $request->nombre;
+            $cliente->numero_documento = $request->numero_documento;
+            $cliente->telefono = $request->telefono;
+            $cliente->email = $request->email;
+            $cliente->save();
+            return redirect('clients')->with('status', 'Cliente registrado correctamente');
+        } catch (Exception $e){
+            
+        }
+        
+
     }
 
     /**
@@ -46,6 +62,8 @@ class ClientsController extends Controller
     public function show($id)
     {
         //
+        $cliente = \App\Client::findOrFail($id);
+        return view('clients.show')->with('cliente', $cliente);
     }
 
     /**
@@ -57,6 +75,8 @@ class ClientsController extends Controller
     public function edit($id)
     {
         //
+        $cliente = \App\Client::findOrFail($id);
+        return view('clients.edit')->with('cliente', $cliente);
     }
 
     /**
@@ -69,6 +89,20 @@ class ClientsController extends Controller
     public function update(Request $request, $id)
     {
         //
+        try{
+            $cliente = \App\Client::findOrFail($id);
+            
+            
+            $cliente->nombre = $request->nombre;
+            $cliente->numero_documento = $request->numero_documento;
+            $cliente->telefono = $request->telefono;
+            $cliente->email = $request->email;
+            $cliente->save();
+            
+            return redirect('clients')->with('status', 'Cliente actualizado correctamente');
+        } catch (Exception $e){
+            
+        }
     }
 
     /**
@@ -80,5 +114,11 @@ class ClientsController extends Controller
     public function destroy($id)
     {
         //
+        try{
+            \App\Client::findOrFail($id)->delete();
+            return redirect('clients')->with('status', 'Cliente eliminado correctamente');
+        } catch (Exception $e) {
+
+        }
     }
 }

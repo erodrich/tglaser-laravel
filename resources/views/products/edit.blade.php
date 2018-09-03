@@ -38,43 +38,7 @@
                 </div>
                 <div class="form-group">
                     {{Form::label('tipo','Seleccione tipo de producto: ')}}
-                    {{Form::select('tipo',['montura'=>'montura','luna'=>'luna','lente'=>'lente'], $producto->tipo),['class'=>'form-control','id'=>'tipo','name'=>'tipo']}}
-                </div>
-                <!-- Seccion formulario para luna -->
-                <div class="d-none border p-3" id="lunaSection">
-                    <h3>Detalle de Luna</h3>
-                    <div class="form-group">
-                        <?php $output1 = ($tipo != null) ? $tipo->glass_op_1 : null ?>
-                        {{Form::label('glass_op_1','Opción 1: ')}}
-                        {{Form::text('glass_op_1',
-                            $output1,
-                            ['class'=>'form-control','placeholder'=>'', 'id'=>'glass_op_1'])}}
-                    </div>
-                    <div class="form-group">
-                        <?php $output2 = ($tipo != null) ? $tipo->glass_op_2 : null ?>
-                        {{Form::label('glass_op_2','Opción 2: ')}}
-                        {{Form::text('glass_op_2',
-                            $output2,
-                            ['class'=>'form-control','placeholder'=>'', 'id'=>'glass_op_2'])}}
-                    </div>  
-                </div>
-                <!-- Seccion formulario para lentes -->
-                <div class="d-none border p-3" id="lenteSection">
-                    <h3>Detalle de Lente de Contacto</h3>
-                    <div class="form-group">
-                        <?php $output3 = ($tipo != null) ? $tipo->contact_op_1 : null ?>
-                        {{Form::label('contact_op_1','Opción 1: ')}}
-                        {{Form::text('contact_op_1',
-                            $output3,
-                            ['class'=>'form-control','placeholder'=>'', 'id'=>'contact_op_1'])}}
-                    </div>
-                    <div class="form-group">
-                        <?php $output4 = ($tipo != null) ? $tipo->contact_op_2 : null ?>
-                        {{Form::label('contact_op_2','Opción 2: ')}}
-                        {{Form::text('contact_op_2',
-                            $output4,
-                            ['class'=>'form-control','placeholder'=>'', 'id'=>'contact_op_2'])}}
-                    </div>
+                    {{Form::select('tipo_id',$tipos, $producto->type->id),['class'=>'form-control']}}
                 </div>
                 {{Form::hidden('_method', 'PUT')}}
                 {{Form::submit('Guardar',['class'=>'btn btn-primary'])}}

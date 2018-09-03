@@ -12,8 +12,7 @@
 
     <!-- Scripts -->
     <!-- <script src="{{ asset('js/app.js') }}" defer></script> -->
-    <script src="https://code.jquery.com/jquery-3.3.1.js" type="text/javascript"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" ></script>
+
 
 
     <!-- Fonts -->
@@ -35,6 +34,7 @@
                     <!-- Barra lateral izquierda -->
                     @include('includes.sidebar')
                     <!-- Contenido principal -->
+                    @include('includes.messages')
                     @yield('content')
                 </div>
             </div>

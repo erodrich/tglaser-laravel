@@ -14,7 +14,11 @@
             @endif
             
             <h2>Datos de Producto</h2>
-            {!! Form::open(['action' => 'ProductsController@store','method'=>'POST']) !!}
+            {!! Form::open(['action' => 'RecepcionController@store','method'=>'POST']) !!}
+                <div class="form-group">
+                    {{Form::label('almacen','Seleccione almacén: ')}}
+                    {{Form::select('almacen_id',$almacenes),['class'=>'form-control']}}
+                </div>
                 <div class="form-group">
                     {{Form::label('proveedor','Seleccione proveedor: ')}}
                     {{Form::select('proveedor_id',$proveedores),['class'=>'form-control']}}
@@ -22,6 +26,10 @@
                 <div class="form-group">
                     {{Form::label('codigo','Código: ')}}
                     {{Form::text('codigo','',['class'=>'form-control','placeholder'=>''])}}
+                </div>
+                <div class="form-group">
+                    {{Form::label('cantidad','Cantidad: ')}}
+                    {{Form::number('cantidad','',['class'=>'form-control'])}}
                 </div>
                 <div class="form-group">
                     {{Form::label('descripcion','Descripción: ')}}
