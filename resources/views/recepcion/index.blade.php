@@ -13,16 +13,24 @@
                 </div>
             @endif
             <div class="row">
-                    <div class="col-sm-6">
+                        <div class="col-sm-6">
                             <div class="card">
                                 <div class="card-body">
-                                <a href="{{ route('recepcion.monturas')}}" class="btn btn-primary">Monturas</a>
+                                    <div class="card-title">
+                                        <h1>Monturas</h1>
+                                    </div>
+                                    <p>Ingresa las monturas recibidas. No olvide seleccionar almacén y proveedor.</p>
+                                    <a href="{{ route('recepcion.monturas')}}" class="btn btn-primary">Monturas</a>
                                 </div>
                             </div>
                         </div>
                         <div class="col-sm-6">
                             <div class="card">
                                 <div class="card-body">
+                                    <div class="card-title">
+                                        <h1>Pedidos</h1>
+                                    </div>
+                                    <p>Registre la llegada de pedidos.</p>
                                     <a href="{{ route('recepcion.pedidos')}}" class="btn btn-primary">Pedidos</a>
                                 </div>
                             </div>

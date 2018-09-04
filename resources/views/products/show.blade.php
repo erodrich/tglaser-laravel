@@ -21,23 +21,10 @@
                     <ul class="list-group">
                         <li class="list-group-item">Precio de venta: {{$producto->precio_venta}}</li>
                         <li class="list-group-item">Precio de compra: {{$producto->precio_compra}}</li>
-                        <li class="list-group-item">Tipo: {{$producto->tipo}}</li>
-                        
-                    @switch($producto->tipo)
-                        @case('luna')
-                            <li class="list-group-item list-group-item-primary">Detalle de producto</li>
-                            <li class="list-group-item">Luna opcion 1: {{$tipo->glass_op_1}}</li>
-                            <li class="list-group-item">Luna opcion 2: {{$tipo->glass_op_2}}</li>
-                            @break
-                        @case('lente')
-                            <li class="list-group-item list-group-item-primary">Detalle de producto</li>
-                            <li class="list-group-item">Lente opcion 1: {{$tipo->contact_op_1}}</li>
-                            <li class="list-group-item">Lente opcion 2: {{$tipo->contact_op_2}}</li>
-                            @break
-                    @endswitch
+                        <li class="list-group-item">Tipo: {{$producto->type->nombre}}</li>
 
                     </ul>
-                    <a href="/products" class="btn btn-primary">Volver</a>
+                <a href="{{ url()->previous()}}" class="btn btn-primary">Volver</a>
                 </div>
             </div>
                      

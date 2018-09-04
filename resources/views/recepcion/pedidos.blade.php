@@ -18,7 +18,7 @@
                     <th>Número</th>
                     <th>Descripción</th>
                     <th>Estado</th>
-                    <th>Fecha Alta</th>
+                    <th>Fecha Creación</th>
                     <th></th>
                 </tr>
                 @if(count($pedidos) > 0)

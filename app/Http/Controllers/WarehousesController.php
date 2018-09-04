@@ -60,8 +60,15 @@ class WarehousesController extends Controller
     public function show($id)
     {
         //
+        $almacenes = \DB::table('warehouses')->whereNotIn('id',[$id])->get()->pluck('nombre','id');
         $almacen = \App\Warehouse::findOrFail($id);
-        return view('warehouses.show')->with('almacen', $almacen);
+        $stocks = \App\Stock::where('warehouse_id','=',$id)->get();
+        $data = [
+            'almacen' => $almacen,
+            'stocks' => $stocks,
+            'almacenes' => $almacenes,
+        ];
+        return view('warehouses.show')->with($data);
     }
 
     /**
@@ -111,5 +118,43 @@ class WarehousesController extends Controller
         $almacen->delete();
 
         return redirect('warehouses')->with('success', 'Almacén eliminado');
+    }
+
+    public function move(Request $request){
+        $stock = \App\Stock::find($request->id);
+        //Crear movimiento de salida
+        $mov = new \App\Movement;
+        $mov->entrada = false;
+        $mov->cantidad = $request->cantidad;
+        $mov->product_id = $stock->product_id;
+        $mov->warehouse_id = $stock->warehouse_id;
+        $mov->save();
+        //Creando o actualizando inventario
+        $search_keys = [
+            'product_id' => $stock->product_id,
+            'warehouse_id' => $stock->warehouse_id,
+        ];
+        $inv = \App\Stock::firstOrNew($search_keys);
+        $inv->cantidad -= $request->cantidad;
+        $inv->save();
+
+        //Crear movimiento de entrada
+        $mov = new \App\Movement;
+        $mov->entrada = true;
+        $mov->cantidad = $request->cantidad;
+        $mov->product_id = $stock->product_id;
+        $mov->warehouse_id = $request->destino_id;
+        $mov->save();
+        //Creando o actualizando inventario
+        $search_keys = [
+            'product_id' => $stock->product_id,
+            'warehouse_id' => $request->destino_id,
+        ];
+        $inv = \App\Stock::firstOrNew($search_keys);
+        $inv->cantidad += $request->cantidad;
+        $inv->save();
+        
+        return redirect()->back()->with('status', 'El producto se movió correctamente');
+
     }
 }

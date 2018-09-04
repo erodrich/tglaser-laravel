@@ -33,19 +33,18 @@ class RecepcionController extends Controller
 
     public function store(Request $request){
         $tipo = \App\ProductType::find($request->tipo_id);
-        $producto = \App\Product::firstOrNew(['codigo' => $request->codigo]);
+        $producto = new \App\Product;
 
         //En caso se trate de una montura se debe crear el producto y luego el movimiento
-        if(strtolower($tipo->nombre) == strtolower('montura') && $producto == null){
+        if(strtolower($tipo->nombre) == strtolower('montura')){
             //Creando producto
-            $proveedor = \App\Supplier::findOrFail($request->input('proveedor_id'));
-            $producto = new \App\Product;
-            $producto->codigo = $request->input('codigo');
-            $producto->descripcion = $request->input('descripcion');
-            $producto->precio_venta = $request->input('precio_venta');
-            $producto->precio_compra = $request->input('precio_compra');
-            $producto->type_id = $request->input('tipo_id');
             try {
+                $proveedor = \App\Supplier::findOrFail($request->input('proveedor_id'));
+                $producto->codigo = $request->input('codigo');
+                $producto->descripcion = $request->input('descripcion');
+                $producto->precio_venta = $request->input('precio_venta');
+                $producto->precio_compra = $request->input('precio_compra');
+                $producto->type_id = $request->input('tipo_id');
                 $proveedor->products()->save($producto);
                 $producto->save();
             } catch (Exception $e) {
@@ -68,7 +67,7 @@ class RecepcionController extends Controller
         $inv = \App\Stock::firstOrNew($search_keys);
         $inv->cantidad += $request->cantidad;
         $inv->save();
-        echo($inv);
+        return redirect('recepcion/monturas')->with('status', 'Montura registrada correctamente');
          
     }
 
@@ -83,12 +82,16 @@ class RecepcionController extends Controller
     }
     public function pedidos(){
         $pedidos = \App\Pedido::all();
-        $almacenes = \App\Warehouses::all()->pluck('nombre', 'id');
+        $almacenes = \App\Warehouse::all()->pluck('nombre', 'id');
         $data = [
             'pedidos' => $pedidos,
             'almacenes' => $almacenes
         ];
         return view('recepcion.pedidos')->with($data);
+    }
+
+    public function show(){
+
     }
     
 }
