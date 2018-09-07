@@ -1,6 +1,6 @@
-<nav class="navbar navbar-dark fixed-top sticky-top bg-dark flex-md-nowrap p-0 shadow">
+<nav class="navbar navbar-expand-lg fixed-top navbar-dark bg-dark">
     <a class="navbar-brand col-sm-3 col-md-2 mr-0" href="{{ url('/') }}">TGLaser</a>
-    <ul class="navbar-nav px-3">
+    <ul class="navbar-nav ml-auto">
       <!-- Authentication Links -->
       @guest
           <li class="nav-item text-nowrap">
@@ -14,7 +14,7 @@
       
       @else
           <li class="nav-item dropdown">
-              <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+              <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" >
                   {{ Auth::user()->name }} <span class="caret"></span>
               </a>
 
@@ -31,5 +31,6 @@
               </div>
           </li>
       @endguest
+
   </ul>
 </nav>
